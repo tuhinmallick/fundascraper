@@ -44,7 +44,8 @@ def parse(link):
 
         # picking up the data
         # try:
-        cover_image = room_data.select_one(".object-media-fotos-container").get("src")
+        cover_image = room_data.select_one(
+            ".object-media-fotos-container").get("src")
         title = room_data.select_one(
             "#content > div.object-detail.fd-container--xl.fd-m-auto > div > div.object-primary > header > div > div > div.object-header__details-info.fd-m-bottom-l.fd-m-bottom-s--bp-m.fd-flex > div.object-header__container.fd-m-right-xs.fd-flex-grow > h1 > span.object-header__title"
         ).text
@@ -70,7 +71,8 @@ def parse(link):
         price = room_data.select_one(
             "#content > div.object-detail.fd-container--xl.fd-m-auto > div > div.object-primary > header > div > div > div.object-header__pricing.fd-text-size-l.fd-flex--bp-m.fd-align-items-center > div"
         ).text
-        description = room_data.select_one("section.object-description > div").text
+        description = room_data.select_one(
+            "section.object-description > div").text
         print("description", description)
         asking_price = room_data.select_one(
             "#content > div.object-detail.fd-container--xl.fd-m-auto > div > div.object-primary > section.object-kenmerken.is-expandible.is-expanded > div > dl:nth-child(2) > dd:nth-child(2) > span.fd-m-right-xs"
@@ -163,51 +165,90 @@ def parse(link):
             "#content > div.object-detail.fd-container--xl.fd-m-auto > div > div.object-primary > section.object-kenmerken.is-expandible.is-expanded > div > dl:nth-child(22) > dd > span"
         ).text
 
-        room_list.append(
-            {
-                "url": link,
-                "cover_image": cover_image,
-                "title": title.strip(),
-                "location": location.strip(),
-                "posted_by": posted_by.strip(),
-                "posted_by_url": posted_by_url,
-                "floor_area": floor_area.strip(),
-                "wall_area": wall_area.strip(),
-                "room_number": room_number.strip(),
-                "price": price.strip(),
-                "description": description.strip(),
-                "asking_price": asking_price.strip(),
-                "offered_since": offered_since.strip(),
-                "status": status.strip(),
-                "acceptance": acceptance.strip(),
-                "type_of_house": type_of_house.strip(),
-                "type_of_construction": type_of_construction.strip(),
-                "construction_year": construction_year.strip(),
-                "type_of_roof": type_of_roof.strip(),
-                "living_space": living_space.strip(),
-                "other_indoor_space": other_indoor_space.strip(),
-                "plot": plot.strip(),
-                "contents": contents.strip(),
-                "number_of_rooms": number_of_rooms.strip(),
-                "number_of_bathrooms": number_of_bathrooms.strip(),
-                "bathroom_amenities": bathroom_amenities.strip(),
-                "number_of_floors": number_of_floors.strip(),
-                "services": services.strip(),
-                "insulation": insulation.strip(),
-                "heating": heating.strip(),
-                "hot_water": hot_water.strip(),
-                "boiler": boiler.strip(),
-                "cadastral_map_url": cadastral_map_url,
-                "cadastral_surface": cadastral_surface.strip(),
-                "cadastral_ownership_situation": cadastral_ownership_situation.strip(),
-                "energy_label": energy_label.strip(),
-                "outdoor_location": outdoor_location.strip(),
-                "outdoor_garden": outdoor_garden.strip(),
-                "outdoor_backyard": outdoor_backyard.strip(),
-                "outdoor_garden_location": outdoor_garden_location.strip(),
-                "type_of_parking": type_of_parking.strip(),
-            }
-        )
+        room_list.append({
+            "url":
+            link,
+            "cover_image":
+            cover_image,
+            "title":
+            title.strip(),
+            "location":
+            location.strip(),
+            "posted_by":
+            posted_by.strip(),
+            "posted_by_url":
+            posted_by_url,
+            "floor_area":
+            floor_area.strip(),
+            "wall_area":
+            wall_area.strip(),
+            "room_number":
+            room_number.strip(),
+            "price":
+            price.strip(),
+            "description":
+            description.strip(),
+            "asking_price":
+            asking_price.strip(),
+            "offered_since":
+            offered_since.strip(),
+            "status":
+            status.strip(),
+            "acceptance":
+            acceptance.strip(),
+            "type_of_house":
+            type_of_house.strip(),
+            "type_of_construction":
+            type_of_construction.strip(),
+            "construction_year":
+            construction_year.strip(),
+            "type_of_roof":
+            type_of_roof.strip(),
+            "living_space":
+            living_space.strip(),
+            "other_indoor_space":
+            other_indoor_space.strip(),
+            "plot":
+            plot.strip(),
+            "contents":
+            contents.strip(),
+            "number_of_rooms":
+            number_of_rooms.strip(),
+            "number_of_bathrooms":
+            number_of_bathrooms.strip(),
+            "bathroom_amenities":
+            bathroom_amenities.strip(),
+            "number_of_floors":
+            number_of_floors.strip(),
+            "services":
+            services.strip(),
+            "insulation":
+            insulation.strip(),
+            "heating":
+            heating.strip(),
+            "hot_water":
+            hot_water.strip(),
+            "boiler":
+            boiler.strip(),
+            "cadastral_map_url":
+            cadastral_map_url,
+            "cadastral_surface":
+            cadastral_surface.strip(),
+            "cadastral_ownership_situation":
+            cadastral_ownership_situation.strip(),
+            "energy_label":
+            energy_label.strip(),
+            "outdoor_location":
+            outdoor_location.strip(),
+            "outdoor_garden":
+            outdoor_garden.strip(),
+            "outdoor_backyard":
+            outdoor_backyard.strip(),
+            "outdoor_garden_location":
+            outdoor_garden_location.strip(),
+            "type_of_parking":
+            type_of_parking.strip(),
+        })
         # finally:
         #   continue
 
@@ -250,17 +291,21 @@ def getLinks():
                 by = room.select_one(".pull-left > span > a.username").text
                 meta_section_1 = room.select_one(".pull-left > span").text
                 content = room.select_one("div.content").text
-                url = room.select_one(".clearfix > .pull-right > a").get("href")
+                url = room.select_one(".clearfix > .pull-right > a").get(
+                    "href")
 
-                room_list.append(
-                    {
-                        "title": title.strip(),
-                        "by": by.strip(),
-                        "content": content.strip(),
-                        "time": meta_section_1.split("¦")[1].replace("\xa0", ""),
-                        "url": url.strip(),
-                    }
-                )
+                room_list.append({
+                    "title":
+                    title.strip(),
+                    "by":
+                    by.strip(),
+                    "content":
+                    content.strip(),
+                    "time":
+                    meta_section_1.split("¦")[1].replace("\xa0", ""),
+                    "url":
+                    url.strip(),
+                })
             finally:
                 continue
 
@@ -282,7 +327,7 @@ for link in link_list:
     print(f"fetching rooms... >> {link} \n")
     with alive_bar(0) as bar:
         for i in parse(
-            "https://www.funda.nl/koop/altforst/huis-88080129-het-gangske-3/"
+                "https://www.funda.nl/koop/altforst/huis-88080129-het-gangske-3/"
         ):
             time.sleep(0.001)
             bar()
@@ -291,7 +336,6 @@ for link in link_list:
         df = pd.DataFrame(room_list)
         print("creating csv file...")
         df.to_csv(csv_file, index=None)
-
 
 print("\n")
 print(len(room_list), f"rooms collected. saved in {csv_file}")
