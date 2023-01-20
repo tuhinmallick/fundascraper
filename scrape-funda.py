@@ -1,10 +1,11 @@
-import time
-from bs4 import BeautifulSoup
 import json
+import time
+
+import pandas as pd
 import requests
 from alive_progress import alive_bar
+from bs4 import BeautifulSoup
 from selenium import webdriver
-import pandas as pd
 
 driver = webdriver.Chrome()
 
