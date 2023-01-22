@@ -261,9 +261,9 @@ def getLinks():
 
     counter = 0
 
-    while True:
+    rooms_selector = "a.top-position-object-link, div.search-result-media > a"
 
-        rooms_selector = "a.top-position-object-link, div.search-result-media > a"
+    while True:
 
         # loop through pages
 
@@ -281,7 +281,7 @@ def getLinks():
         rooms_selected = soup.select(rooms_selector)
 
         if len(rooms_selected) < 0:
-            print(f"less than {0} rooms found in {link}. Finishing up.")
+            print(f"less than 0 rooms found in {link}. Finishing up.")
             break
 
         for room in rooms_selected:
@@ -326,7 +326,7 @@ print("")
 for link in link_list:
     print(f"fetching rooms... >> {link} \n")
     with alive_bar(0) as bar:
-        for i in parse(
+        for _ in parse(
                 "https://www.funda.nl/koop/altforst/huis-88080129-het-gangske-3/"
         ):
             time.sleep(0.001)
